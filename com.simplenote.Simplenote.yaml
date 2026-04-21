@@ -1,8 +1,8 @@
 app-id: com.simplenote.Simplenote
 base: org.electronjs.Electron2.BaseApp
-base-version: '23.08'
+base-version: '25.08'
 runtime: org.freedesktop.Platform
-runtime-version: '23.08'
+runtime-version: '25.08'
 sdk: org.freedesktop.Sdk
 separate-locales: false
 command: simplenote
@@ -13,13 +13,11 @@ finish-args:
   - --share=ipc
   - --share=network
   - --socket=cups
-  - --filesystem=xdg-config/Simplenote
+  # - --filesystem=xdg-config/Simplenote
   - --filesystem=xdg-documents
   - --filesystem=xdg-download
   - --talk-name=org.freedesktop.secrets
 modules:
-
-  - shared-modules/libsecret/libsecret.json
 
   - name: libcups
     make-args: [libs]
@@ -30,8 +28,8 @@ modules:
       - /include
     sources:
       - type: archive
-        url: https://github.com/OpenPrinting/cups/releases/download/v2.4.7/cups-2.4.7-source.tar.gz
-        sha256: dd54228dd903526428ce7e37961afaed230ad310788141da75cebaa08362cf6c
+        url: https://github.com/OpenPrinting/cups/releases/download/v2.4.17/cups-2.4.17-source.tar.gz
+        sha256: 89c703238de210d4f4f4e5d4269e3d60c4b2f487aad75a8a1eaecd659e4d0b77
 
   - name: gtk-cups-backend
     buildsystem: meson
@@ -42,8 +40,9 @@ modules:
     sources:
       - type: git
         url: https://gitlab.gnome.org/GNOME/gtk.git
-        tag: 3.24.38
-  
+        tag: 3.24.52
+        commit: 6a0b360d473f7c546314738c0c8dd9829eb9d3c2
+
   - name: gtk-settings
     buildsystem: simple
     build-commands:
@@ -62,14 +61,14 @@ modules:
       - type: file
         path: com.simplenote.Simplenote.png
       - type: archive
-        url: https://github.com/Automattic/simplenote-electron/releases/download/v2.21.0/Simplenote-linux-2.21.0-arm64.tar.gz
-        sha256: 0a82f99b73061d7583ec9dfbd49f9133f7f79c061825bfef6836687fb9374d5e
+        url: https://github.com/Automattic/simplenote-electron/releases/download/v2.24.0/Simplenote-linux-2.24.0-arm64.tar.gz
+        sha256: 8037132f9f2aef15bd7e21a686a3a0397608daacaef8b56a3f6d134ac5ca8dd8
         only-arches:
           - aarch64
         dest: main
       - type: archive
-        url: https://github.com/Automattic/simplenote-electron/releases/download/v2.21.0/Simplenote-linux-2.21.0-x64.tar.gz
-        sha256: e4e7482029628ce52c7a42a1cec9822785b7118aeb3f3ae4007d7da386dd1a3e
+        url: https://github.com/Automattic/simplenote-electron/releases/download/v2.24.0/Simplenote-linux-2.24.0-x64.tar.gz
+        sha256: 68ebcdd5ae98abe1ca1987e6e1c934dcfff7db663ed9c61a1116e87f98fda289
         only-arches:
           - x86_64
         dest: main
